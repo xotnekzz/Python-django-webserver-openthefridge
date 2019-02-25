@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        table { border-collapse: collapse; }
+        td { width: 100px ;border: 1px solid black;}
+    </style>
+    <title>Title</title>
+</head>
+<body>
+<h3>식재료 등록</h3>
+
+<a href ="{% url "food_register" %}">식재료 등록</a>
+<br/>
+페이지
+<table>
+    <tr>
+        <td>번호</td><td>분류</td><td>이름</td><td>구매일</td><td>유통기한</td><td>보관위치</td><td>수정/삭제</td>
+    </tr>
+
+    {% load endless %}
+    {% paginate food_list %}
+    {%  for food in food_list %}
+       <tr>
+        <td>
+            {{ food.pk }}
+        </td>
+        <td>
+            {{ food.food_type }}
+        </td>
+        <td>
+            {{ food.food_name }}
+        </td>
+        <td>
+            {{ food.food_purchase }}
+        </td>
+        <td>
+            {{ food.food_exdate }}
+        </td>
+        <td>
+            {{ food.food_location }}
+        </td>
+        <td>
+            <a href ="{% url "register_edit" food.pk%}">수정하기</a>
+            <br/>
+            <a href ="{% url "food_delete" food.pk%}">삭제하기</a>
+        </td>
+       </tr>
+    {%  endfor %}
+    {% show_pages %}
+</table>
+</body>
+</html>

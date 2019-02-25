@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        table { border-collapse: collapse; }
+        td { width: 100px ;border: 1px solid black;}
+    </style>
+    <title>Title</title>
+</head>
+<body>
+<h3>식재료 등록</h3>
+
+<a href ="{% url "shopping_register" %}">식재료 등록</a>
+<br/>
+페이지
+<table>
+    <tr>
+        <td>번호</td><td>분류</td><td>이름</td><td>메모</td><<td>수정/삭제</td>
+    </tr>
+
+    {% load endless %}
+    {% paginate shopping_list %}
+    {%  for shopping in shopping_list %}
+       <tr>
+        <td>
+            {{ shopping.pk }}
+        </td>
+        <td>
+            {{ shopping.food_type }}
+        </td>
+        <td>
+            {{ shopping.shopping_name }}
+        </td>
+        <td>
+            {{ shopping.shopping_memo }}
+        </td>
+        <td>
+            <a href ="{% url "shopping_edit" shopping.pk%}">수정하기</a>
+            <br/>
+            <a href ="{% url "shopping_delete" shopping.pk%}">삭제하기</a>
+        </td>
+       </tr>
+    {%  endfor %}
+    {% show_pages %}
+</table>
+</body>
+</html>

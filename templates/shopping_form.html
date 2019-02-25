@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <style>
+        table { border-collapse: collapse; }
+        td {border: 1px solid black;}
+        td:nth-child(0) { width : 300px; }
+    </style>
+    <title>register</title>
+</head>
+<body>
+<form action ="" method="POST">
+         {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+     </table>
+        <input type="submit" value="등록"/>
+
+</form>
+</body>
+</html>
